@@ -4,7 +4,9 @@ import morgan from "morgan";
 import cors from "cors";
 import dotenv from "dotenv";
 
-dotenv.config(); 
+import productRoutes from "./routes/product.Routes.js";
+
+dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -15,11 +17,9 @@ app.use(cors()); // CORS is a node.js package for providing a Connect/Express mi
 
 app.use(helmet()); // helmet is a security middleware that helps you protect your app from some well-known web vulnerabilities by setting HTTP headers appropriately.
 
-app.use(morgan("dev")); // morgan is a middleware that logs HTTP requests. It's very useful for debugging and monitoring.    
+app.use(morgan("dev")); // morgan is a middleware that logs HTTP requests. It's very useful for debugging and monitoring.
 
-app.get("/", (req, res) => {
-    res.send("Hello World!");
-});
+app.use("/api/products", productRoutes);
 
 app.listen(PORT, () => {
     console.log(`Server is running on port: ${PORT}`);
