@@ -1,27 +1,13 @@
 import { Link, useResolvedPath } from "react-router-dom";
 import { ShoppingBagIcon, ShoppingCartIcon } from "lucide-react";
 import ThemeSelector from "./ThemeSelector";
-// import { useProductStore } from "../store/useProductStore";
+import { useProductStore } from "../store/useProductStore";
 
 function Navbar() {
     const { pathname } = useResolvedPath();
     const isHomePage = pathname === "/";
 
-    // const { products } = useProductStore();
-    let products = [
-        {
-            id: 1,
-            name: "Product 1",
-            price: 100,
-            quantity: 2,
-        },
-        {
-            id: 2,
-            name: "Product 2",
-            price: 200,
-            quantity: 1,
-        },
-    ];
+    const { products } = useProductStore();
 
     return (
         <div className="bg-base-100/80 backdrop-blur-lg border-b border-base-content/10 sticky top-0 z-50">
@@ -32,10 +18,7 @@ function Navbar() {
                         <Link to="/" className="hover:opacity-80 transition-opacity">
                             <div className="flex items-center gap-2">
                                 <ShoppingCartIcon className="size-9 text-primary" />
-                                <span
-                                    className="font-semibold font-mono tracking-widest text-2xl 
-                    bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary"
-                                >
+                                <span className="font-semibold font-mono tracking-widest text-2xl bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary">
                                     POSGRESTORE
                                 </span>
                             </div>
